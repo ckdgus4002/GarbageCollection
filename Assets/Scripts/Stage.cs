@@ -1,17 +1,28 @@
 using System;
+using UnityEditor;
+using UnityEngine;
 
 [Serializable]
-public class Stage
+public class Stage : IDisposable
 {
-    public Stage(Main main, int id)
+    public Stage(Main main)
     {
-        _main = main;
-        this.id = id;
-        hero = new Hero(null, "Hero");
+        this.main = main;
+        hero = new Hero(this);
     }
 
-    public int id;
+    
+    
+    public Main main;
     public Hero hero;
+    
+    
+    
+    public void Dispose()
+    {
+        Debug.Log("Stage Dispose");
 
-    private Main _main;
+        main = null;
+        hero = null;
+    }
 }

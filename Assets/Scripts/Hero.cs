@@ -1,18 +1,24 @@
 using System;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
-public class Hero
+public class Hero : IDisposable
 {
-    public Hero(Stage stage, string name)
+    public Hero(Stage stage)
     {
-        _stage = stage;
-        this.name = name;
+        this.stage = stage;
     }
 
     
     
-    public string name;
-
-
-    private Stage _stage;
+    public Stage stage;
+    
+    
+    
+    public void Dispose()
+    {
+        Debug.Log("Hero Dispose");
+        stage = null;
+    }
 }
